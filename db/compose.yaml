@@ -1,0 +1,26 @@
+services:
+  db:
+    image: postgres
+    restart: always
+    shm_size: 128mb
+    ports:
+      - 5678:5432
+    environment:
+      POSTGRES_PASSWORD: adminpass
+    volumes:
+      - db_data:/usr/postgres/data
+
+  pgadmin:
+    image: dpage/pgadmin4
+    restart: always
+    ports:
+      - 8080:80
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: adminpass
+    volumes:
+      - pgadmin_data:/etc/pgadmin/data
+
+volumes:
+  db_data:
+  pgadmin_data:
