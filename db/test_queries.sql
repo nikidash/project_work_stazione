@@ -29,12 +29,12 @@ RETURNING id;
 
 -- Create Trains record (Will be deleted later)
 INSERT INTO Trains (id, trainNumber, length, origin, destination, trainType, scheduledArrivalTime, scheduledDepartureTime, isTransit, assignedPlatform)
-VALUES (3000, 'T801', 10, 'L', 'R', 'R', '2025-12-15 08:00:00', '2025-12-15 08:15:00', FALSE, 1)
+VALUES (3000, 'T801', 10, 'L1', 'R', 'R', '2025-12-15 08:00:00', '2025-12-15 08:15:00', FALSE, 1)
 RETURNING id;
 
 -- Create TrainsLog record (ID 5000) needed for Maintenance
 INSERT INTO TrainsLog (id, trainNumber, length, origin, destination, trainType, scheduledArrivalTime, scheduledDepartureTime, isTransit, actualDepartureTime, actualArrivalTime, assignedPlatform)
-VALUES (5000, 'T902', 12, 'R', 'L', 'F', '2025-12-15 09:00:00', '2025-12-15 09:05:00', TRUE, '2025-12-15 09:06:00', '2025-12-15 09:00:00', 2)
+VALUES (5000, 'T902', 12, 'R2', 'L', 'F', '2025-12-15 09:00:00', '2025-12-15 09:05:00', TRUE, '2025-12-15 09:06:00', '2025-12-15 09:00:00', 2)
 RETURNING id;
 
 -- Create Maintenance record (ID 7000)
