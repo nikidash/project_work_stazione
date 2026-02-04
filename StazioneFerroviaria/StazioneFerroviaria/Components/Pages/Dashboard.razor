@@ -1,0 +1,130 @@
+﻿@page "/dashboard"
+@inject FerroviaApi.Data.FerroviaApiDbContext Db
+
+<h3>Dashboard Stazione</h3>
+
+<h4>Binari</h4>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Binario</th>
+            <th>Lunghezza</th>
+            <th>Stato</th>
+            <th>Tipo</th>
+            <th>Treno assegnato</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var sector in sectors)
+        {
+            var train = trains.FirstOrDefault(t => t.AssignedPlatform == sector.PlatformNumber);
+            <tr>
+                <td>@sector.PlatformNumber</td>
+                <td>@sector.Length</td>
+                <td>
+                    <span class="badge @GetTrackClass(sector)">
+                        @GetTrackStatusText(sector)
+                    </span>
+                </td>
+                <td>@(train?.TrainType ?? "-")</td>
+                <td>@(train?.TrainNumber ?? "-")</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h4>Treni in Manutenzione</h4>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Treno</th>
+            <th>Tipo</th>
+            <th>Binario</th>
+            <th>Inizio</th>
+            <th>Fine prevista</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var m in maintenance)
+        {
+            <tr>
+                <td>@m.TrainLog.TrainNumber</td>
+                <td>@m.TrainLog.TrainType</td>
+                <td>@m.MaintenancePlatform</td>
+                <td>@m.MaintenanceStart.ToLocalTime()</td>
+                <td>@m.MaintenanceEnd.ToLocalTime()</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h4>Treni in Transito / Attivi</h4>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Treno</th>
+            <th>Tipo</th>
+            <th>Binario</th>
+            <th>Arrivo programmato</th>
+            <th>P. Partenza</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var t in trains)
+        {
+            <tr>
+                <td>@t.TrainNumber</td>
+                <td>@t.TrainType</td>
+                <td>@(t.AssignedPlatform ?? -1)</td>
+                <td>@t.ScheduledArrivalTime.ToLocalTime()</td>
+                <td>@t.ScheduledDepartureTime.ToLocalTime()</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h4>Semafori</h4>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Stato</th>
+            <th>Deviazione</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var s in semaphores)
+        {
+            <tr>
+                <td>@s.Id</td>
+                <td>@(s.IsGreen ? "Verde" : "Rosso")</td>
+                <td>@(s.IsDeviating ? "Attiva" : "Dritta")</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h4>Scambi</h4>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Input</th>
+            <th>Dritto</th>
+            <th>Deviazione</th>
+            <th>Stato</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var sw in switches)
+        {
+            <tr>
+                <td>@sw.Id</td>
+                <td>@sw.InputId</td>
+                <td>@sw.StraightId</td>
+                <td>@sw.DeviationId</td>
+                <td>@(sw.IsDeviating ? "Deviazione" : "Dritto")</td>
+            </tr>
+        }
+    </tbody>
+</table>
