@@ -76,6 +76,16 @@ h1, h2, h3, h4 {
     color: #212529;
 }
 
+.stopping-pattern {
+    background-image: repeating-linear-gradient(
+        45deg,
+        rgba(255,255,255,.15),
+        rgba(255,255,255,.15) 1px,
+        transparent 1px,
+        transparent 5px
+    );
+}
+
 .dashboard-section {
     margin-top: 40px;
 }

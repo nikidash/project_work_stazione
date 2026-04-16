@@ -1,4 +1,4 @@
-﻿using FerroviaApi.Models;
+using FerroviaApi.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace StazioneFerroviaria.Components.Pages;
@@ -14,7 +14,19 @@ public partial class Dashboard
     protected override async Task OnInitializedAsync()
     {
         sectors = await Db.Sectors.OrderBy(s => s.PlatformNumber).ToListAsync();
-        trains = await Db.Trains.OrderBy(t => t.ScheduledArrivalTime).ToListAsync();
+
+        var now = DateTime.UtcNow;
+        trains = await Db.Trains
+            .Where(t => t.ScheduledArrivalTime <= now && t.ScheduledDepartureTime > now)
+            .OrderBy(t => t.ScheduledArrivalTime)
+            .ToListAsync();
+
+        foreach (var sector in sectors)
+        {
+            if (sector.PlatformNumber.HasValue)
+                sector.IsAvailable = !trains.Any(t => t.AssignedPlatform == sector.PlatformNumber);
+        }
+
         maintenance = await Db.Maintenance.Include(m => m.TrainLog).ToListAsync();
         semaphores = await Db.Semaphores.ToListAsync();
         switches = await Db.Switches.ToListAsync();

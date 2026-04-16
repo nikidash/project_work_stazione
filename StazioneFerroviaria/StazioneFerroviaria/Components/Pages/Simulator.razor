@@ -1,0 +1,86 @@
+@page "/simulator"
+@inject StazioneFerroviaria.Services.SimulationService SimService
+
+<h3>Simulatore Stazione</h3>
+
+<div class="card mb-4">
+    <div class="card-body">
+        <div class="d-flex flex-wrap align-items-center gap-2 mb-2">
+            <button class="btn btn-success" @onclick="Play" disabled="@_isRunning">
+                Play
+            </button>
+            <button class="btn btn-warning" @onclick="Pause" disabled="@(!_isRunning)">
+                Pausa
+            </button>
+            <button class="btn btn-primary" @onclick="Step">
+                Step
+            </button>
+            <button class="btn btn-danger" @onclick="DoReset">
+                Reset
+            </button>
+            <div class="ms-auto d-flex align-items-center gap-2">
+                <label class="form-label mb-0">Velocita' (@(_speed)ms)</label>
+                <input type="range" class="form-range" style="width: 200px;"
+                       min="200" max="5000" step="100"
+                       value="@_speed" @onchange="OnSpeedChanged" />
+            </div>
+        </div>
+        <div>
+            <span class="badge bg-info">Tick: @SimService.TickCount</span>
+            <span class="badge @(_isRunning ? "bg-success" : "bg-secondary") ms-2">
+                @(_isRunning ? "In esecuzione" : "In pausa")
+            </span>
+        </div>
+    </div>
+</div>
+
+<h4>Binari</h4>
+@foreach (var track in SimService.Tracks)
+{
+    <div class="card mb-3">
+        <div class="card-body p-3">
+            <div class="d-flex justify-content-between mb-1">
+                <strong>@track.Label</strong>
+                <span class="text-muted small text-capitalize">@track.Type — @track.MaxZones zone</span>
+            </div>
+            <div class="d-flex border rounded overflow-hidden" style="height: 40px;">
+                @for (int idx = 0; idx < track.Zones.Count; idx++)
+                {
+                    var zone = track.Zones[idx];
+                    var index = idx;
+                    <div class="flex-fill border-end d-flex align-items-center justify-content-center @GetZoneClass(zone, track)"
+                         style="min-width: 0;"
+                         title="@GetZoneTitle(zone)">
+                        @if (IsTrainHead(zone, index, track))
+                        {
+                            <small class="text-white fw-bold text-nowrap" style="font-size: 0.6rem;">
+                                @if (zone.Train!.Direction == -1) { <span>&#9664;</span> }
+                                @zone.Train!.Code
+                                @if (zone.Train!.Direction == 1) { <span>&#9654;</span> }
+                            </small>
+                        }
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+}
+
+<div class="row mt-2">
+    <div class="col-md-3 mb-2">
+        <span class="d-inline-block rounded me-1" style="width:14px;height:14px;background:#0d6efd;"></span>
+        <small>Passeggeri (R/V/F)</small>
+    </div>
+    <div class="col-md-3 mb-2">
+        <span class="d-inline-block rounded me-1" style="width:14px;height:14px;background:#dc3545;"></span>
+        <small>Merci (T/S)</small>
+    </div>
+    <div class="col-md-3 mb-2">
+        <span class="d-inline-block rounded me-1 border" style="width:14px;height:14px;background:#dee2e6;"></span>
+        <small>Zona libera</small>
+    </div>
+    <div class="col-md-3 mb-2">
+        <span class="d-inline-block rounded me-1" style="width:14px;height:14px;background:#0b5ed7;background-image:repeating-linear-gradient(45deg,rgba(255,255,255,.15),rgba(255,255,255,.15) 1px,transparent 1px,transparent 5px);"></span>
+        <small>In sosta</small>
+    </div>
+</div>

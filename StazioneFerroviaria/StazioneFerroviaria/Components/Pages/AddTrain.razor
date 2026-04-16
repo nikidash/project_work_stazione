@@ -1,8 +1,19 @@
-﻿@page "/add-train"
+@page "/add-train"
 @inject FerroviaApi.Data.FerroviaApiDbContext Db
 @inject NavigationManager Nav
+@inject StazioneFerroviaria.Services.TrainNotificationService TrainNotification
 
 <h3>Aggiungi Treno</h3>
+
+@if (!string.IsNullOrEmpty(successMessage))
+{
+    <div class="alert alert-success">@successMessage</div>
+}
+
+@if (!string.IsNullOrEmpty(errorMessage))
+{
+    <div class="alert alert-danger">@errorMessage</div>
+}
 
 <EditForm Model="train" OnValidSubmit="SaveTrain">
     <DataAnnotationsValidator />
@@ -19,6 +30,7 @@
             <option value="R">Regionale</option>
             <option value="V">Veloce</option>
             <option value="F">Freccia</option>
+            <option value="T">Merci Transito</option>
             <option value="S">Cargo Stazionante</option>
         </InputSelect>
     </div>
@@ -47,13 +59,14 @@
     </div>
 
     <div class="mb-3">
-        <label>Arrivo programmato</label>
-        <InputDate class="form-control" @bind-Value="train.ScheduledArrivalTime" />
-    </div>
-
-    <div class="mb-3">
-        <label>Partenza programmata</label>
-        <InputDate class="form-control" @bind-Value="train.ScheduledDepartureTime" />
+        <label>Binario</label>
+        <InputSelect class="form-control" @bind-Value="selectedPlatform">
+            <option value="0">-- Seleziona --</option>
+            @foreach (var s in sectors)
+            {
+                <option value="@s.PlatformNumber">Binario @s.PlatformNumber</option>
+            }
+        </InputSelect>
     </div>
 
     <div class="form-check mb-3">
@@ -61,5 +74,10 @@
         <label class="form-check-label">In transito</label>
     </div>
 
-    <button class="btn btn-primary">Salva</button>
+    <div class="form-check mb-3">
+        <InputCheckbox class="form-check-input" @bind-Value="isMaintenance" />
+        <label class="form-check-label">In manutenzione</label>
+    </div>
+
+    <button class="btn btn-primary" type="submit">Salva</button>
 </EditForm>

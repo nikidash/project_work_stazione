@@ -1,17 +1,37 @@
 using FerroviaApi.Data;
+using FerroviaApi.Models;
 using Microsoft.EntityFrameworkCore;
 using StazioneFerroviaria.Components;
+using StazioneFerroviaria.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<FerroviaApiDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("FerroviaDb")));
 
+builder.Services.AddSingleton<SimulationService>();
+builder.Services.AddSingleton<TrainNotificationService>();
+
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
 var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<FerroviaApiDbContext>();
+    if (!db.Sectors.Any())
+    {
+        db.Sectors.AddRange(
+            new Sector { PlatformNumber = 1, Length = 20, IsAvailable = true, IsStop = false },
+            new Sector { PlatformNumber = 2, Length = 20, IsAvailable = true, IsStop = false },
+            new Sector { PlatformNumber = 3, Length = 20, IsAvailable = true, IsStop = false },
+            new Sector { PlatformNumber = 4, Length = 20, IsAvailable = true, IsStop = false }
+        );
+        db.SaveChanges();
+    }
+}
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

@@ -75,7 +75,7 @@
             <tr>
                 <td>@t.TrainNumber</td>
                 <td>@t.TrainType</td>
-                <td>@(t.AssignedPlatform ?? -1)</td>
+                <td>@(t.AssignedPlatform?.ToString() ?? "N/A")</td>
                 <td>@t.ScheduledArrivalTime.ToLocalTime()</td>
                 <td>@t.ScheduledDepartureTime.ToLocalTime()</td>
             </tr>
