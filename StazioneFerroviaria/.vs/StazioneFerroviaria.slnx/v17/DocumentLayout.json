@@ -1,9 +1,17 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Gabriele Boeron\\Documents\\Project Work 2\\StazioneFerroviaria\\",
+  "WorkspaceRootPath": "C:\\Users\\Gabriele Boeron\\Downloads\\StazioneFerroviaria-20260409T145107Z-3-001\\StazioneFerroviaria\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{7BC1F499-EEE3-8B27-BA91-3619AD51EEFA}|StazioneFerroviaria\\StazioneFerroviaria.csproj|c:\\users\\gabriele boeron\\documents\\project work 2\\stazioneferroviaria\\stazioneferroviaria\\data\\ferroviaapidbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{7BC1F499-EEE3-8B27-BA91-3619AD51EEFA}|StazioneFerroviaria\\StazioneFerroviaria.csproj|c:\\users\\gabriele boeron\\downloads\\stazioneferroviaria-20260409t145107z-3-001\\stazioneferroviaria\\stazioneferroviaria\\controllers\\trainscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7BC1F499-EEE3-8B27-BA91-3619AD51EEFA}|StazioneFerroviaria\\StazioneFerroviaria.csproj|solutionrelative:stazioneferroviaria\\controllers\\trainscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7BC1F499-EEE3-8B27-BA91-3619AD51EEFA}|StazioneFerroviaria\\StazioneFerroviaria.csproj|c:\\users\\gabriele boeron\\downloads\\stazioneferroviaria-20260409t145107z-3-001\\stazioneferroviaria\\stazioneferroviaria\\components\\pages\\simulator.razor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7BC1F499-EEE3-8B27-BA91-3619AD51EEFA}|StazioneFerroviaria\\StazioneFerroviaria.csproj|solutionrelative:stazioneferroviaria\\components\\pages\\simulator.razor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7BC1F499-EEE3-8B27-BA91-3619AD51EEFA}|StazioneFerroviaria\\StazioneFerroviaria.csproj|c:\\users\\gabriele boeron\\downloads\\stazioneferroviaria-20260409t145107z-3-001\\stazioneferroviaria\\stazioneferroviaria\\data\\ferroviaapidbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{7BC1F499-EEE3-8B27-BA91-3619AD51EEFA}|StazioneFerroviaria\\StazioneFerroviaria.csproj|solutionrelative:stazioneferroviaria\\data\\ferroviaapidbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -19,15 +27,39 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "FerroviaApiDbContext.cs",
-              "DocumentMoniker": "C:\\Users\\Gabriele Boeron\\Documents\\Project Work 2\\StazioneFerroviaria\\StazioneFerroviaria\\Data\\FerroviaApiDbContext.cs",
-              "RelativeDocumentMoniker": "StazioneFerroviaria\\Data\\FerroviaApiDbContext.cs",
-              "ToolTip": "C:\\Users\\Gabriele Boeron\\Documents\\Project Work 2\\StazioneFerroviaria\\StazioneFerroviaria\\Data\\FerroviaApiDbContext.cs",
-              "RelativeToolTip": "StazioneFerroviaria\\Data\\FerroviaApiDbContext.cs",
-              "ViewState": "AgIAAGEAAAAAAAAAAAAwwHwAAAApAAAAAAAAAA==",
+              "Title": "TrainsController.cs",
+              "DocumentMoniker": "C:\\Users\\Gabriele Boeron\\Downloads\\StazioneFerroviaria-20260409T145107Z-3-001\\StazioneFerroviaria\\StazioneFerroviaria\\Controllers\\TrainsController.cs",
+              "RelativeDocumentMoniker": "StazioneFerroviaria\\Controllers\\TrainsController.cs",
+              "ToolTip": "C:\\Users\\Gabriele Boeron\\Downloads\\StazioneFerroviaria-20260409T145107Z-3-001\\StazioneFerroviaria\\StazioneFerroviaria\\Controllers\\TrainsController.cs",
+              "RelativeToolTip": "StazioneFerroviaria\\Controllers\\TrainsController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-05T16:32:48.321Z",
+              "WhenOpened": "2026-04-09T15:11:59.013Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Simulator.razor.cs",
+              "DocumentMoniker": "C:\\Users\\Gabriele Boeron\\Downloads\\StazioneFerroviaria-20260409T145107Z-3-001\\StazioneFerroviaria\\StazioneFerroviaria\\Components\\Pages\\Simulator.razor.cs",
+              "RelativeDocumentMoniker": "StazioneFerroviaria\\Components\\Pages\\Simulator.razor.cs",
+              "ToolTip": "C:\\Users\\Gabriele Boeron\\Downloads\\StazioneFerroviaria-20260409T145107Z-3-001\\StazioneFerroviaria\\StazioneFerroviaria\\Components\\Pages\\Simulator.razor.cs",
+              "RelativeToolTip": "StazioneFerroviaria\\Components\\Pages\\Simulator.razor.cs",
+              "ViewState": "AgIAAJcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-09T11:45:39.036Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "FerroviaApiDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\Gabriele Boeron\\Downloads\\StazioneFerroviaria-20260409T145107Z-3-001\\StazioneFerroviaria\\StazioneFerroviaria\\Data\\FerroviaApiDbContext.cs",
+              "RelativeDocumentMoniker": "StazioneFerroviaria\\Data\\FerroviaApiDbContext.cs",
+              "ToolTip": "C:\\Users\\Gabriele Boeron\\Downloads\\StazioneFerroviaria-20260409T145107Z-3-001\\StazioneFerroviaria\\StazioneFerroviaria\\Data\\FerroviaApiDbContext.cs",
+              "RelativeToolTip": "StazioneFerroviaria\\Data\\FerroviaApiDbContext.cs",
+              "ViewState": "AgIAAGEAAAAAAAAAAAAwwHQAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-05T16:32:48.321Z"
             },
             {
               "$type": "Bookmark",

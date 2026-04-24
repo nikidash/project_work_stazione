@@ -23,38 +23,42 @@ CREATE TABLE IF NOT EXISTS "switches"(
   is_deviating BOOL NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS Trains (
+CREATE TABLE IF NOT EXISTS trains (
     id SERIAL PRIMARY KEY,
     train_number VARCHAR(10),
     length INT NOT NULL CHECK (length BETWEEN 6 AND 16),
-    origin CHAR NOT NULL CHECK (origin IN ('L1', 'R1', 'L2', 'R2')),
-    destination CHAR NOT NULL CHECK (destination IN ('L', 'R')),
-    train_type CHAR NOT NULL CHECK (trainType IN ('R', 'V', 'F', 'S')),
+    origin CHAR(2) NOT NULL CHECK (origin IN ('L1', 'R1', 'L2', 'R2')),
+    destination CHAR(1) NOT NULL CHECK (destination IN ('L', 'R')),
+    train_type CHAR(1) NOT NULL CHECK (train_type IN ('R', 'V', 'F', 'S')),
     scheduled_arrival_time TIMESTAMP NOT NULL,
-    scheduled_departure_time TIMESTAMP NOT NULL CHECK(scheduledDepartureTime > scheduledArrivalTime),
+    scheduled_departure_time TIMESTAMP NOT NULL
+        CHECK (scheduled_departure_time > scheduled_arrival_time),
     is_transit BOOLEAN NOT NULL,
     assigned_platform INT REFERENCES sectors(platform_number)
 );
 
-CREATE TABLE IF NOT EXISTS TrainsLog (
+
+CREATE TABLE IF NOT EXISTS trains_log (
     id SERIAL PRIMARY KEY,
     train_number VARCHAR(10),
     length INT NOT NULL CHECK (length BETWEEN 6 AND 16),
-    origin CHAR NOT NULL CHECK (origin IN ('L1', 'R1', 'L2', 'R2')),
-    destination CHAR NOT NULL CHECK (destination IN ('L', 'R')),
-    train_type CHAR NOT NULL CHECK (trainType IN ('R', 'V', 'F', 'S')),
+    origin CHAR(2) NOT NULL CHECK (origin IN ('L1', 'R1', 'L2', 'R2')),
+    destination CHAR(1) NOT NULL CHECK (destination IN ('L', 'R')),
+    train_type CHAR(1) NOT NULL CHECK (train_type IN ('R', 'V', 'F', 'S')),
     scheduled_arrival_time TIMESTAMP NOT NULL,
-    scheduled_departure_time TIMESTAMP NOT NULL CHECK(scheduledDepartureTime > scheduledArrivalTime),
+    scheduled_departure_time TIMESTAMP NOT NULL
+        CHECK (scheduled_departure_time > scheduled_arrival_time),
     is_transit BOOLEAN NOT NULL,
     actual_departure_time TIMESTAMP NOT NULL,
     actual_arrival_time TIMESTAMP NOT NULL,
     assigned_platform INT REFERENCES sectors(platform_number)
 );
 
-CREATE TABLE IF NOT EXISTS Maintenance (
+CREATE TABLE IF NOT EXISTS maintenance (
     id SERIAL PRIMARY KEY,
-    train_d INT NOT NULL REFERENCES TrainsLog (id),
+    train_id INT NOT NULL REFERENCES trains_log(id),
     maintenance_start TIMESTAMP NOT NULL,
-    maintenance_end TIMESTAMP NOT NULL CHECK(maintenanceEnd > maintenanceStart),
+    maintenance_end TIMESTAMP NOT NULL
+        CHECK (maintenance_end > maintenance_start),
     maintenance_platform INT REFERENCES sectors(id)
 );
