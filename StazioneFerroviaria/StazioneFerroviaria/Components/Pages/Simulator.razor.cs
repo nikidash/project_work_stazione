@@ -111,61 +111,6 @@ public partial class Simulator : IDisposable
         }
     }
 
-    private string GetZoneClass(SimZone zone, SimTrack track)
-    {
-        if (!zone.IsOccupied || zone.Train == null)
-            return "bg-light border";
-
-        if (zone.Train.IsStopping)
-        {
-            return zone.Train.Type switch
-            {
-                "R" or "V" or "F" => "bg-primary stopping-pattern",
-                "T" or "S" => "bg-danger stopping-pattern",
-                _ => "bg-dark stopping-pattern"
-            };
-        }
-
-        return zone.Train.Type switch
-        {
-            "R" or "V" or "F" => "bg-primary",
-            "T" or "S" => "bg-danger",
-            _ => "bg-dark"
-        };
-    }
-
-    private bool IsTrainHead(SimZone zone, int index, SimTrack track)
-    {
-        if (zone.Train == null) return false;
-        var dir = zone.Train.Direction;
-
-        if (dir == 1)
-        {
-            return index == 0 ||
-                   track.Zones[index - 1].Train == null ||
-                   track.Zones[index - 1].Train!.Id != zone.Train.Id;
-        }
-        if (dir == -1)
-        {
-            return index == track.Zones.Count - 1 ||
-                   track.Zones[index + 1].Train == null ||
-                   track.Zones[index + 1].Train!.Id != zone.Train.Id;
-        }
-        return false;
-    }
-
-    private string GetZoneTitle(SimZone zone)
-    {
-        if (zone.Train == null)
-            return $"Zona {zone.Id}";
-
-        var stoppingStatus = zone.Train.IsStopping
-            ? $"In sosta (attesa: {zone.Train.TimeRemaining})"
-            : "In transito";
-
-        return $"Treno: {zone.Train.Code} | Lunghezza: {zone.Train.Length} vagoni | {stoppingStatus}";
-    }
-
     public void Dispose()
     {
         _disposed = true;

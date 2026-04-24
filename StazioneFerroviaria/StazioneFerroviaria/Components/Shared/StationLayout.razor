@@ -1,0 +1,348 @@
+@using System.Globalization
+@using StazioneFerroviaria.Models.Simulation
+
+<div class="station-layout-wrap">
+    <svg viewBox="0 0 1200 540" class="w-100" preserveAspectRatio="xMidYMid meet"
+         style="max-height: 620px; background: #f8f9fa; border: 1px solid #dee2e6; border-radius: 6px;">
+
+        <defs>
+            <marker id="arrow-r" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="10" markerHeight="10" orient="auto">
+                <path d="M 0 0 L 10 5 L 0 10 z" fill="#b00020"/>
+            </marker>
+            <marker id="arrow-l" viewBox="0 0 10 10" refX="1" refY="5" markerWidth="10" markerHeight="10" orient="auto">
+                <path d="M 10 0 L 0 5 L 10 10 z" fill="#b00020"/>
+            </marker>
+        </defs>
+
+        @{
+            var passTracks = Tracks.Where(t => t.Type == "transit").OrderBy(t => t.Id).ToList();
+            var maintTracks = Tracks.Where(t => t.Type == "maintenance").OrderBy(t => t.Id).ToList();
+        }
+
+        @* ═══════════════════════════════════════════════════════ *@
+        @* VENTAGLI DI SCAMBIO (linee diagonali ingresso/uscita) *@
+        @* ═══════════════════════════════════════════════════════ *@
+        @for (int i = 0; i < passTracks.Count; i++)
+        {
+            var y = TrackY(i);
+
+            @* Ingresso ovest: dal portale (WestPortalX, WestPortalY) al binario i *@
+            <line x1="@F(WestPortalX)" y1="@F(WestPortalY)"
+                  x2="@F(TrackStartX)" y2="@F(y)"
+                  stroke="#555" stroke-width="2.5"/>
+
+            @* Uscita est: dal binario i al portale (EastPortalX, EastPortalY) *@
+            <line x1="@F(TrackEndX)" y1="@F(y)"
+                  x2="@F(EastPortalX)" y2="@F(EastPortalY)"
+                  stroke="#555" stroke-width="2.5"/>
+        }
+
+        @* Frecce direzionali ai portali (bidirezionali) *@
+        <line x1="@F(WestPortalX + 4)" y1="@F(WestPortalY)"
+              x2="@F(WestPortalX - 14)" y2="@F(WestPortalY)"
+              stroke="#b00020" stroke-width="3" marker-end="url(#arrow-l)"/>
+        <line x1="@F(WestPortalX)" y1="@F(WestPortalY)"
+              x2="@F(WestPortalX + 22)" y2="@F(WestPortalY)"
+              stroke="#b00020" stroke-width="3" marker-end="url(#arrow-r)"/>
+        <line x1="@F(EastPortalX - 4)" y1="@F(EastPortalY)"
+              x2="@F(EastPortalX + 14)" y2="@F(EastPortalY)"
+              stroke="#b00020" stroke-width="3" marker-end="url(#arrow-r)"/>
+        <line x1="@F(EastPortalX)" y1="@F(EastPortalY)"
+              x2="@F(EastPortalX - 22)" y2="@F(EastPortalY)"
+              stroke="#b00020" stroke-width="3" marker-end="url(#arrow-l)"/>
+
+        @* ═══════════════════════════════════════════════════════ *@
+        @* SCAMBI DECORATIVI TRA BINARI ADIACENTI (piccoli tratti) *@
+        @* ═══════════════════════════════════════════════════════ *@
+        @for (int i = 0; i < passTracks.Count - 1; i++)
+        {
+            var y1 = TrackY(i);
+            var y2 = TrackY(i + 1);
+
+            @* Scambio lato ovest (vicino inizio binari) *@
+            <line x1="@F(TrackStartX + 30)" y1="@F(y1)"
+                  x2="@F(TrackStartX + 70)" y2="@F(y2)"
+                  stroke="#555" stroke-width="1.5" opacity="0.75"/>
+            <circle cx="@F(TrackStartX + 30)" cy="@F(y1)" r="3" fill="#ffc107" stroke="#856404" stroke-width="0.8"/>
+            <circle cx="@F(TrackStartX + 70)" cy="@F(y2)" r="3" fill="#ffc107" stroke="#856404" stroke-width="0.8"/>
+
+            @* Scambio lato est (vicino fine binari) *@
+            <line x1="@F(TrackEndX - 70)" y1="@F(y1)"
+                  x2="@F(TrackEndX - 30)" y2="@F(y2)"
+                  stroke="#555" stroke-width="1.5" opacity="0.75"/>
+            <circle cx="@F(TrackEndX - 70)" cy="@F(y1)" r="3" fill="#ffc107" stroke="#856404" stroke-width="0.8"/>
+            <circle cx="@F(TrackEndX - 30)" cy="@F(y2)" r="3" fill="#ffc107" stroke="#856404" stroke-width="0.8"/>
+        }
+
+        @* ═══════════════════════════════════════════════════════ *@
+        @* 4 BINARI DI STAZIONE *@
+        @* ═══════════════════════════════════════════════════════ *@
+        @for (int i = 0; i < passTracks.Count; i++)
+        {
+            var track = passTracks[i];
+            var y = TrackY(i);
+            var zones = track.Zones.Count;
+
+            @* Linea del binario *@
+            <line x1="@F(TrackStartX)" y1="@F(y)" x2="@F(TrackEndX)" y2="@F(y)"
+                  stroke="#333" stroke-width="3.5"/>
+
+            @* Traversine *@
+            @for (int z = 0; z < zones; z++)
+            {
+                var zx = ZoneX(z, zones);
+                <line x1="@F(zx)" y1="@F(y - 5)" x2="@F(zx)" y2="@F(y + 5)"
+                      stroke="#aaa" stroke-width="1"/>
+            }
+
+            @* Etichetta binario a sinistra (subito dopo il ventaglio) *@
+            <svg:text x="@F(TrackStartX + 6)" y="@F(y - 8)" font-size="11"
+                  fill="#333" font-weight="bold">Binario @(i + 1)</svg:text>
+        }
+
+        @* Label "Ingresso/Uscita" ai portali *@
+        <svg:text x="@F(WestPortalX - 8)" y="@F(WestPortalY + 4)"
+              font-size="11" fill="#b00020" font-weight="bold"
+              text-anchor="end">Ingresso/Uscita</svg:text>
+        <svg:text x="@F(EastPortalX + 8)" y="@F(EastPortalY + 4)"
+              font-size="11" fill="#b00020" font-weight="bold"
+              text-anchor="start">Ingresso/Uscita</svg:text>
+
+        @* ═══════════════════════════════════════════════════════ *@
+        @* BINARI MORTI (si staccano dal Binario 4 tramite scambio) *@
+        @* ═══════════════════════════════════════════════════════ *@
+        @{
+            var track4Y = passTracks.Count > 0 ? TrackY(passTracks.Count - 1) : 260;
+        }
+        @for (int m = 0; m < maintTracks.Count; m++)
+        {
+            var sx = MaintStartX(m);
+            var sy = track4Y;
+            var ex = MaintEndX;
+            var ey = MaintEndY(m);
+
+            @* Scambio origine sul binario 4 *@
+            <circle cx="@F(sx)" cy="@F(sy)" r="4" fill="#ffc107" stroke="#856404" stroke-width="1.2"/>
+
+            @* Linea binario morto (diagonale) *@
+            <line x1="@F(sx)" y1="@F(sy)" x2="@F(ex)" y2="@F(ey)"
+                  stroke="#333" stroke-width="3.5"/>
+
+            @* Traversine lungo diagonale *@
+            @for (int z = 0; z < maintTracks[m].Zones.Count; z++)
+            {
+                var t = (z + 0.5) / maintTracks[m].Zones.Count;
+                var zx = sx + (ex - sx) * t;
+                var zy = sy + (ey - sy) * t;
+                var dx = ex - sx;
+                var dy = ey - sy;
+                var len = Math.Sqrt(dx * dx + dy * dy);
+                var nx = -dy / len * 5;
+                var ny = dx / len * 5;
+                <line x1="@F(zx - nx)" y1="@F(zy - ny)"
+                      x2="@F(zx + nx)" y2="@F(zy + ny)"
+                      stroke="#aaa" stroke-width="1"/>
+            }
+
+            @* Respingente fine binario morto *@
+            <line x1="@F(ex + 3)" y1="@F(ey - 10)" x2="@F(ex + 3)" y2="@F(ey + 10)"
+                  stroke="#dc3545" stroke-width="3"/>
+            <line x1="@F(ex - 5)" y1="@F(ey)" x2="@F(ex + 7)" y2="@F(ey)"
+                  stroke="#dc3545" stroke-width="3"/>
+
+            <svg:text x="@F(ex + 14)" y="@F(ey + 4)" font-size="11"
+                  fill="#333" font-weight="bold">Morto @(m + 1)</svg:text>
+        }
+
+        @* ═══════════════════════════════════════════════════════ *@
+        @* TRENI SU BINARI DI STAZIONE *@
+        @* ═══════════════════════════════════════════════════════ *@
+        @for (int i = 0; i < passTracks.Count; i++)
+        {
+            var track = passTracks[i];
+            var y = TrackY(i);
+            foreach (var block in TrainBlocks(track))
+            {
+                var zHalf = ZoneHalf(track.Zones.Count);
+                var x1p = ZoneX(block.StartIdx, track.Zones.Count) - zHalf;
+                var x2p = ZoneX(block.EndIdx, track.Zones.Count) + zHalf;
+                var w = x2p - x1p;
+                var fill = TrainFill(block.Train!);
+
+                <g>
+                    <rect x="@F(x1p)" y="@F(y - 10)" width="@F(w)" height="20"
+                          fill="@fill" rx="3" ry="3"
+                          stroke="rgba(0,0,0,0.35)" stroke-width="0.6"/>
+
+                    @if (block.Train!.Direction == 1)
+                    {
+                        <polygon points="@F(x2p - 8),@F(y - 8) @F(x2p),@F(y) @F(x2p - 8),@F(y + 8)"
+                                 fill="rgba(0,0,0,0.3)"/>
+                    }
+                    else
+                    {
+                        <polygon points="@F(x1p + 8),@F(y - 8) @F(x1p),@F(y) @F(x1p + 8),@F(y + 8)"
+                                 fill="rgba(0,0,0,0.3)"/>
+                    }
+
+                    <svg:text x="@F((x1p + x2p) / 2)" y="@F(y + 4)" font-size="10"
+                          fill="white" text-anchor="middle" font-weight="bold"
+                          style="pointer-events:none">
+                        @block.Train!.Code
+                    </svg:text>
+
+                    <title>
+                        Treno @block.Train!.Code · @block.Train!.Length vagoni ·
+                        @(block.Train!.IsStopping ? $"In sosta ({block.Train!.TimeRemaining})" : "In transito")
+                    </title>
+                </g>
+            }
+        }
+
+        @* ═══════════════════════════════════════════════════════ *@
+        @* TRENI SU BINARI MORTI *@
+        @* ═══════════════════════════════════════════════════════ *@
+        @for (int m = 0; m < maintTracks.Count; m++)
+        {
+            var track = maintTracks[m];
+            var sx = MaintStartX(m);
+            var sy = track4Y;
+            var ex = MaintEndX;
+            var ey = MaintEndY(m);
+            var count = track.Zones.Count;
+            var angle = Math.Atan2(ey - sy, ex - sx) * 180.0 / Math.PI;
+
+            foreach (var block in TrainBlocks(track))
+            {
+                var tStart = (double)block.StartIdx / count;
+                var tEnd = (double)(block.EndIdx + 1) / count;
+                var px1 = sx + (ex - sx) * tStart;
+                var py1 = sy + (ey - sy) * tStart;
+                var px2 = sx + (ex - sx) * tEnd;
+                var py2 = sy + (ey - sy) * tEnd;
+                var cx = (px1 + px2) / 2;
+                var cy = (py1 + py2) / 2;
+                var w = Math.Sqrt(Math.Pow(px2 - px1, 2) + Math.Pow(py2 - py1, 2));
+                var fill = TrainFill(block.Train!);
+
+                <g transform="rotate(@F(angle) @F(cx) @F(cy))">
+                    <rect x="@F(cx - w / 2)" y="@F(cy - 8)" width="@F(w)" height="16"
+                          fill="@fill" rx="3" ry="3"
+                          stroke="rgba(0,0,0,0.35)" stroke-width="0.6"/>
+                    <svg:text x="@F(cx)" y="@F(cy + 4)" font-size="9"
+                          fill="white" text-anchor="middle" font-weight="bold"
+                          style="pointer-events:none">
+                        @block.Train!.Code
+                    </svg:text>
+                    <title>
+                        Treno @block.Train!.Code · In manutenzione ·
+                        @(block.Train!.IsStopping ? $"attesa {block.Train!.TimeRemaining}" : "in movimento")
+                    </title>
+                </g>
+            }
+        }
+
+        @* ═══════════════════════════════════════════════════════ *@
+        @* LEGENDA *@
+        @* ═══════════════════════════════════════════════════════ *@
+        <g transform="translate(20, 500)">
+            <rect x="0" y="0" width="14" height="14" fill="#0d6efd" rx="2"/>
+            <svg:text x="20" y="11" font-size="11" fill="#333">Passeggeri (R/V/F)</svg:text>
+            <rect x="160" y="0" width="14" height="14" fill="#dc3545" rx="2"/>
+            <svg:text x="180" y="11" font-size="11" fill="#333">Merci (T/S)</svg:text>
+            <circle cx="307" cy="7" r="4" fill="#ffc107" stroke="#856404"/>
+            <svg:text x="318" y="11" font-size="11" fill="#333">Scambio</svg:text>
+            <line x1="400" y1="0" x2="400" y2="14" stroke="#dc3545" stroke-width="3"/>
+            <line x1="393" y1="7" x2="407" y2="7" stroke="#dc3545" stroke-width="3"/>
+            <svg:text x="415" y="11" font-size="11" fill="#333">Fine binario morto</svg:text>
+            <line x1="570" y1="7" x2="585" y2="7" stroke="#b00020" stroke-width="3" marker-end="url(#arrow-r)"/>
+            <svg:text x="595" y="11" font-size="11" fill="#333">Ingresso / uscita linea</svg:text>
+        </g>
+    </svg>
+</div>
+
+@code {
+    [Parameter, EditorRequired]
+    public IReadOnlyList<SimTrack> Tracks { get; set; } = new List<SimTrack>();
+
+    // ═══ Coordinate del layout ═══
+    private const double WestPortalX = 50;
+    private const double WestPortalY = 180;
+    private const double EastPortalX = 1150;
+    private const double EastPortalY = 180;
+    private const double TrackStartX = 200;
+    private const double TrackEndX = 960;
+    private const double FirstTrackY = 80;
+    private const double TrackSpacing = 55;
+
+    // Binari morti
+    private const double MaintEndX = 1130;
+    private static double MaintStartX(int m) => 720 + m * 50;
+    private static double MaintEndY(int m) => 360 + m * 70;
+
+    private static double TrackY(int i) => FirstTrackY + i * TrackSpacing;
+
+    private static double ZoneX(int idx, int totalZones)
+    {
+        if (totalZones <= 0) return TrackStartX;
+        var spacing = (TrackEndX - TrackStartX) / totalZones;
+        return TrackStartX + (idx + 0.5) * spacing;
+    }
+
+    private static double ZoneHalf(int totalZones)
+    {
+        if (totalZones <= 0) return 10;
+        return ((TrackEndX - TrackStartX) / totalZones) / 2.0;
+    }
+
+    // Helper: formatta double con punto decimale (culture-invariant)
+    private static string F(double v) => v.ToString("F2", CultureInfo.InvariantCulture);
+
+    private class TrainBlock
+    {
+        public SimTrain? Train { get; set; }
+        public int StartIdx { get; set; }
+        public int EndIdx { get; set; }
+    }
+
+    private IEnumerable<TrainBlock> TrainBlocks(SimTrack track)
+    {
+        var seen = new HashSet<string>();
+        for (int i = 0; i < track.Zones.Count; i++)
+        {
+            var train = track.Zones[i].Train;
+            if (train == null) continue;
+            if (!seen.Add(train.Id)) continue;
+
+            int start = i, end = i;
+            for (int j = 0; j < track.Zones.Count; j++)
+            {
+                if (track.Zones[j].Train?.Id == train.Id)
+                {
+                    if (j < start) start = j;
+                    if (j > end) end = j;
+                }
+            }
+            yield return new TrainBlock { Train = train, StartIdx = start, EndIdx = end };
+        }
+    }
+
+    private static string TrainFill(SimTrain t)
+    {
+        if (t.IsStopping)
+        {
+            return t.Type switch
+            {
+                "R" or "V" or "F" => "#0a58ca",
+                "T" or "S" => "#a02533",
+                _ => "#1f2326"
+            };
+        }
+        return t.Type switch
+        {
+            "R" or "V" or "F" => "#0d6efd",
+            "T" or "S" => "#dc3545",
+            _ => "#343a40"
+        };
+    }
+}

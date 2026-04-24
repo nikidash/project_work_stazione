@@ -1,9 +1,14 @@
 ﻿@page "/dashboard"
 @inject FerroviaApi.Data.FerroviaApiDbContext Db
+@inject StazioneFerroviaria.Services.SimulationService SimService
+@implements IDisposable
 
 <h3>Dashboard Stazione</h3>
 
-<h4>Binari</h4>
+<h4>Layout stazione</h4>
+<StationLayout Tracks="SimService.Tracks" />
+
+<h4 class="mt-4">Binari</h4>
 <table class="table table-striped">
     <thead>
         <tr>
