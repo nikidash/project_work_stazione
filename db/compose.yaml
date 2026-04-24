@@ -1,5 +1,6 @@
 services:
   db:
+    container_name: pw-db
     image: postgres
     restart: always
     shm_size: 128mb
@@ -7,10 +8,13 @@ services:
       - 5678:5432
     environment:
       POSTGRES_PASSWORD: adminpass
+      POSTGRES_DB: pw-stazione
     volumes:
-      - db_data:/usr/postgres/data
+      - pw_db_data:/var/lib/postgresql/data
+      - ./create_queries.sql:/docker-entrypoint-initdb.d/create_queries.sql:ro
 
   pgadmin:
+    container_name: pw-pgadmin
     image: dpage/pgadmin4
     restart: always
     ports:
@@ -19,8 +23,8 @@ services:
       PGADMIN_DEFAULT_EMAIL: admin@admin.com
       PGADMIN_DEFAULT_PASSWORD: adminpass
     volumes:
-      - pgadmin_data:/etc/pgadmin/data
+      - pw_pgadmin_data:/etc/pgadmin/data
 
 volumes:
-  db_data:
-  pgadmin_data:
+  pw_db_data:
+  pw_pgadmin_data:
