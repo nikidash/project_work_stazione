@@ -32,9 +32,9 @@ namespace FerroviaApi.Controllers
         {
             _context.Trains.Add(train);
             try { await _context.SaveChangesAsync(); }
-            catch (DbUpdateException ex)
+            catch (DbUpdateException)
             {
-                // La validazione di CHECK e FK è cruciale qui (Length, Origin, Destination, Times)
+                // La validazione di CHECK e FK ï¿½ cruciale qui (Length, Origin, Destination, Times)
                 return Conflict(new { message = "Conflitto: Treno non creato. Verifica i vincoli: lunghezza, origine/destinazione, orari (ScheduledDeparture > Arrival) e piattaforma assegnata." });
             }
             return CreatedAtAction(nameof(GetTrain), new { id = train.Id }, train);

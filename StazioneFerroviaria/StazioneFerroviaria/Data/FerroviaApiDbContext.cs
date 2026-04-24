@@ -22,7 +22,7 @@ namespace FerroviaApi.Data
         {
             foreach (var entity in modelBuilder.Model.GetEntityTypes())
             {
-                entity.SetTableName(entity.GetTableName().ToLower());
+                entity.SetTableName(entity?.GetTableName()?.ToLower());
             }
 
             modelBuilder.Entity<Sector>(entity =>

@@ -48,8 +48,8 @@
         @foreach (var m in maintenance)
         {
             <tr>
-                <td>@m.TrainLog.TrainNumber</td>
-                <td>@m.TrainLog.TrainType</td>
+                <td>@m.TrainLog?.TrainNumber</td>
+                <td>@m.TrainLog?.TrainType</td>
                 <td>@m.MaintenancePlatform</td>
                 <td>@m.MaintenanceStart.ToLocalTime()</td>
                 <td>@m.MaintenanceEnd.ToLocalTime()</td>
