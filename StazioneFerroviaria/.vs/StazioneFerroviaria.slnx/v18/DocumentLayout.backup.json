@@ -1,45 +1,45 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Ciarma Nico\\Desktop\\own stuff\\StazioneFerroviaria\\",
+  "WorkspaceRootPath": "C:\\Users\\Ciarma Nico\\Desktop\\appunti\\ProjectWork\\project_work_stazione\\StazioneFerroviaria\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{7BC1F499-EEE3-8B27-BA91-3619AD51EEFA}|StazioneFerroviaria\\StazioneFerroviaria.csproj|c:\\users\\ciarma nico\\desktop\\own stuff\\stazioneferroviaria\\stazioneferroviaria\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "AbsoluteMoniker": "D:0:0:{7BC1F499-EEE3-8B27-BA91-3619AD51EEFA}|StazioneFerroviaria\\StazioneFerroviaria.csproj|c:\\users\\ciarma nico\\desktop\\appunti\\projectwork\\project_work_stazione\\stazioneferroviaria\\stazioneferroviaria\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{7BC1F499-EEE3-8B27-BA91-3619AD51EEFA}|StazioneFerroviaria\\StazioneFerroviaria.csproj|solutionrelative:stazioneferroviaria\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7BC1F499-EEE3-8B27-BA91-3619AD51EEFA}|StazioneFerroviaria\\StazioneFerroviaria.csproj|c:\\users\\ciarma nico\\desktop\\own stuff\\stazioneferroviaria\\stazioneferroviaria\\data\\ferroviaapidbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{7BC1F499-EEE3-8B27-BA91-3619AD51EEFA}|StazioneFerroviaria\\StazioneFerroviaria.csproj|c:\\users\\ciarma nico\\desktop\\appunti\\projectwork\\project_work_stazione\\stazioneferroviaria\\stazioneferroviaria\\data\\ferroviaapidbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{7BC1F499-EEE3-8B27-BA91-3619AD51EEFA}|StazioneFerroviaria\\StazioneFerroviaria.csproj|solutionrelative:stazioneferroviaria\\data\\ferroviaapidbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7BC1F499-EEE3-8B27-BA91-3619AD51EEFA}|StazioneFerroviaria\\StazioneFerroviaria.csproj|c:\\users\\ciarma nico\\desktop\\own stuff\\stazioneferroviaria\\stazioneferroviaria\\components\\pages\\dashboard.razor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{7BC1F499-EEE3-8B27-BA91-3619AD51EEFA}|StazioneFerroviaria\\StazioneFerroviaria.csproj|c:\\users\\ciarma nico\\desktop\\appunti\\projectwork\\project_work_stazione\\stazioneferroviaria\\stazioneferroviaria\\components\\pages\\dashboard.razor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{7BC1F499-EEE3-8B27-BA91-3619AD51EEFA}|StazioneFerroviaria\\StazioneFerroviaria.csproj|solutionrelative:stazioneferroviaria\\components\\pages\\dashboard.razor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7BC1F499-EEE3-8B27-BA91-3619AD51EEFA}|StazioneFerroviaria\\StazioneFerroviaria.csproj|c:\\users\\ciarma nico\\desktop\\own stuff\\stazioneferroviaria\\stazioneferroviaria\\components\\pages\\dashboard.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{7BC1F499-EEE3-8B27-BA91-3619AD51EEFA}|StazioneFerroviaria\\StazioneFerroviaria.csproj|c:\\users\\ciarma nico\\desktop\\appunti\\projectwork\\project_work_stazione\\stazioneferroviaria\\stazioneferroviaria\\components\\pages\\dashboard.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{7BC1F499-EEE3-8B27-BA91-3619AD51EEFA}|StazioneFerroviaria\\StazioneFerroviaria.csproj|solutionrelative:stazioneferroviaria\\components\\pages\\dashboard.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7BC1F499-EEE3-8B27-BA91-3619AD51EEFA}|StazioneFerroviaria\\StazioneFerroviaria.csproj|c:\\users\\ciarma nico\\desktop\\own stuff\\stazioneferroviaria\\stazioneferroviaria\\components\\pages\\addtrain.razor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{7BC1F499-EEE3-8B27-BA91-3619AD51EEFA}|StazioneFerroviaria\\StazioneFerroviaria.csproj|c:\\users\\ciarma nico\\desktop\\appunti\\projectwork\\project_work_stazione\\stazioneferroviaria\\stazioneferroviaria\\components\\pages\\addtrain.razor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{7BC1F499-EEE3-8B27-BA91-3619AD51EEFA}|StazioneFerroviaria\\StazioneFerroviaria.csproj|solutionrelative:stazioneferroviaria\\components\\pages\\addtrain.razor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7BC1F499-EEE3-8B27-BA91-3619AD51EEFA}|StazioneFerroviaria\\StazioneFerroviaria.csproj|c:\\users\\ciarma nico\\desktop\\own stuff\\stazioneferroviaria\\stazioneferroviaria\\components\\pages\\home.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{7BC1F499-EEE3-8B27-BA91-3619AD51EEFA}|StazioneFerroviaria\\StazioneFerroviaria.csproj|c:\\users\\ciarma nico\\desktop\\appunti\\projectwork\\project_work_stazione\\stazioneferroviaria\\stazioneferroviaria\\components\\pages\\home.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{7BC1F499-EEE3-8B27-BA91-3619AD51EEFA}|StazioneFerroviaria\\StazioneFerroviaria.csproj|solutionrelative:stazioneferroviaria\\components\\pages\\home.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7BC1F499-EEE3-8B27-BA91-3619AD51EEFA}|StazioneFerroviaria\\StazioneFerroviaria.csproj|c:\\users\\ciarma nico\\desktop\\own stuff\\stazioneferroviaria\\stazioneferroviaria\\wwwroot\\app.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "AbsoluteMoniker": "D:0:0:{7BC1F499-EEE3-8B27-BA91-3619AD51EEFA}|StazioneFerroviaria\\StazioneFerroviaria.csproj|c:\\users\\ciarma nico\\desktop\\appunti\\projectwork\\project_work_stazione\\stazioneferroviaria\\stazioneferroviaria\\wwwroot\\app.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
       "RelativeMoniker": "D:0:0:{7BC1F499-EEE3-8B27-BA91-3619AD51EEFA}|StazioneFerroviaria\\StazioneFerroviaria.csproj|solutionrelative:stazioneferroviaria\\wwwroot\\app.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7BC1F499-EEE3-8B27-BA91-3619AD51EEFA}|StazioneFerroviaria\\StazioneFerroviaria.csproj|c:\\users\\ciarma nico\\desktop\\own stuff\\stazioneferroviaria\\stazioneferroviaria\\components\\layout\\navmenu.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{7BC1F499-EEE3-8B27-BA91-3619AD51EEFA}|StazioneFerroviaria\\StazioneFerroviaria.csproj|c:\\users\\ciarma nico\\desktop\\appunti\\projectwork\\project_work_stazione\\stazioneferroviaria\\stazioneferroviaria\\components\\layout\\navmenu.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{7BC1F499-EEE3-8B27-BA91-3619AD51EEFA}|StazioneFerroviaria\\StazioneFerroviaria.csproj|solutionrelative:stazioneferroviaria\\components\\layout\\navmenu.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7BC1F499-EEE3-8B27-BA91-3619AD51EEFA}|StazioneFerroviaria\\StazioneFerroviaria.csproj|c:\\users\\ciarma nico\\desktop\\own stuff\\stazioneferroviaria\\stazioneferroviaria\\components\\pages\\addtrain.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{7BC1F499-EEE3-8B27-BA91-3619AD51EEFA}|StazioneFerroviaria\\StazioneFerroviaria.csproj|c:\\users\\ciarma nico\\desktop\\appunti\\projectwork\\project_work_stazione\\stazioneferroviaria\\stazioneferroviaria\\components\\pages\\addtrain.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{7BC1F499-EEE3-8B27-BA91-3619AD51EEFA}|StazioneFerroviaria\\StazioneFerroviaria.csproj|solutionrelative:stazioneferroviaria\\components\\pages\\addtrain.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7BC1F499-EEE3-8B27-BA91-3619AD51EEFA}|StazioneFerroviaria\\StazioneFerroviaria.csproj|c:\\users\\ciarma nico\\desktop\\own stuff\\stazioneferroviaria\\stazioneferroviaria\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{7BC1F499-EEE3-8B27-BA91-3619AD51EEFA}|StazioneFerroviaria\\StazioneFerroviaria.csproj|c:\\users\\ciarma nico\\desktop\\appunti\\projectwork\\project_work_stazione\\stazioneferroviaria\\stazioneferroviaria\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{7BC1F499-EEE3-8B27-BA91-3619AD51EEFA}|StazioneFerroviaria\\StazioneFerroviaria.csproj|solutionrelative:stazioneferroviaria\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -64,22 +64,21 @@
               "$type": "Document",
               "DocumentIndex": 1,
               "Title": "FerroviaApiDbContext.cs",
-              "DocumentMoniker": "C:\\Users\\Ciarma Nico\\Desktop\\own stuff\\StazioneFerroviaria\\StazioneFerroviaria\\Data\\FerroviaApiDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\Ciarma Nico\\Desktop\\appunti\\ProjectWork\\project_work_stazione\\StazioneFerroviaria\\StazioneFerroviaria\\Data\\FerroviaApiDbContext.cs",
               "RelativeDocumentMoniker": "StazioneFerroviaria\\Data\\FerroviaApiDbContext.cs",
-              "ToolTip": "C:\\Users\\Ciarma Nico\\Desktop\\own stuff\\StazioneFerroviaria\\StazioneFerroviaria\\Data\\FerroviaApiDbContext.cs",
+              "ToolTip": "C:\\Users\\Ciarma Nico\\Desktop\\appunti\\ProjectWork\\project_work_stazione\\StazioneFerroviaria\\StazioneFerroviaria\\Data\\FerroviaApiDbContext.cs",
               "RelativeToolTip": "StazioneFerroviaria\\Data\\FerroviaApiDbContext.cs",
               "ViewState": "AgIAAA8AAAAAAAAAAAAcwFUAAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-05T17:46:16.666Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-05T17:46:16.666Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 5,
               "Title": "Home.razor",
-              "DocumentMoniker": "C:\\Users\\Ciarma Nico\\Desktop\\own stuff\\StazioneFerroviaria\\StazioneFerroviaria\\Components\\Pages\\Home.razor",
+              "DocumentMoniker": "C:\\Users\\Ciarma Nico\\Desktop\\appunti\\ProjectWork\\project_work_stazione\\StazioneFerroviaria\\StazioneFerroviaria\\Components\\Pages\\Home.razor",
               "RelativeDocumentMoniker": "StazioneFerroviaria\\Components\\Pages\\Home.razor",
-              "ToolTip": "C:\\Users\\Ciarma Nico\\Desktop\\own stuff\\StazioneFerroviaria\\StazioneFerroviaria\\Components\\Pages\\Home.razor",
+              "ToolTip": "C:\\Users\\Ciarma Nico\\Desktop\\appunti\\ProjectWork\\project_work_stazione\\StazioneFerroviaria\\StazioneFerroviaria\\Components\\Pages\\Home.razor",
               "RelativeToolTip": "StazioneFerroviaria\\Components\\Pages\\Home.razor",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
@@ -89,9 +88,9 @@
               "$type": "Document",
               "DocumentIndex": 6,
               "Title": "app.css",
-              "DocumentMoniker": "C:\\Users\\Ciarma Nico\\Desktop\\own stuff\\StazioneFerroviaria\\StazioneFerroviaria\\wwwroot\\app.css",
+              "DocumentMoniker": "C:\\Users\\Ciarma Nico\\Desktop\\appunti\\ProjectWork\\project_work_stazione\\StazioneFerroviaria\\StazioneFerroviaria\\wwwroot\\app.css",
               "RelativeDocumentMoniker": "StazioneFerroviaria\\wwwroot\\app.css",
-              "ToolTip": "C:\\Users\\Ciarma Nico\\Desktop\\own stuff\\StazioneFerroviaria\\StazioneFerroviaria\\wwwroot\\app.css",
+              "ToolTip": "C:\\Users\\Ciarma Nico\\Desktop\\appunti\\ProjectWork\\project_work_stazione\\StazioneFerroviaria\\StazioneFerroviaria\\wwwroot\\app.css",
               "RelativeToolTip": "StazioneFerroviaria\\wwwroot\\app.css",
               "ViewState": "AgIAACYAAAAAAAAAAAAAAAMAAAATAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
@@ -101,9 +100,9 @@
               "$type": "Document",
               "DocumentIndex": 4,
               "Title": "AddTrain.razor.cs",
-              "DocumentMoniker": "C:\\Users\\Ciarma Nico\\Desktop\\own stuff\\StazioneFerroviaria\\StazioneFerroviaria\\Components\\Pages\\AddTrain.razor.cs",
+              "DocumentMoniker": "C:\\Users\\Ciarma Nico\\Desktop\\appunti\\ProjectWork\\project_work_stazione\\StazioneFerroviaria\\StazioneFerroviaria\\Components\\Pages\\AddTrain.razor.cs",
               "RelativeDocumentMoniker": "StazioneFerroviaria\\Components\\Pages\\AddTrain.razor.cs",
-              "ToolTip": "C:\\Users\\Ciarma Nico\\Desktop\\own stuff\\StazioneFerroviaria\\StazioneFerroviaria\\Components\\Pages\\AddTrain.razor.cs",
+              "ToolTip": "C:\\Users\\Ciarma Nico\\Desktop\\appunti\\ProjectWork\\project_work_stazione\\StazioneFerroviaria\\StazioneFerroviaria\\Components\\Pages\\AddTrain.razor.cs",
               "RelativeToolTip": "StazioneFerroviaria\\Components\\Pages\\AddTrain.razor.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -113,9 +112,9 @@
               "$type": "Document",
               "DocumentIndex": 8,
               "Title": "AddTrain.razor",
-              "DocumentMoniker": "C:\\Users\\Ciarma Nico\\Desktop\\own stuff\\StazioneFerroviaria\\StazioneFerroviaria\\Components\\Pages\\AddTrain.razor",
+              "DocumentMoniker": "C:\\Users\\Ciarma Nico\\Desktop\\appunti\\ProjectWork\\project_work_stazione\\StazioneFerroviaria\\StazioneFerroviaria\\Components\\Pages\\AddTrain.razor",
               "RelativeDocumentMoniker": "StazioneFerroviaria\\Components\\Pages\\AddTrain.razor",
-              "ToolTip": "C:\\Users\\Ciarma Nico\\Desktop\\own stuff\\StazioneFerroviaria\\StazioneFerroviaria\\Components\\Pages\\AddTrain.razor",
+              "ToolTip": "C:\\Users\\Ciarma Nico\\Desktop\\appunti\\ProjectWork\\project_work_stazione\\StazioneFerroviaria\\StazioneFerroviaria\\Components\\Pages\\AddTrain.razor",
               "RelativeToolTip": "StazioneFerroviaria\\Components\\Pages\\AddTrain.razor",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
@@ -125,9 +124,9 @@
               "$type": "Document",
               "DocumentIndex": 9,
               "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\Ciarma Nico\\Desktop\\own stuff\\StazioneFerroviaria\\StazioneFerroviaria\\Program.cs",
+              "DocumentMoniker": "C:\\Users\\Ciarma Nico\\Desktop\\appunti\\ProjectWork\\project_work_stazione\\StazioneFerroviaria\\StazioneFerroviaria\\Program.cs",
               "RelativeDocumentMoniker": "StazioneFerroviaria\\Program.cs",
-              "ToolTip": "C:\\Users\\Ciarma Nico\\Desktop\\own stuff\\StazioneFerroviaria\\StazioneFerroviaria\\Program.cs",
+              "ToolTip": "C:\\Users\\Ciarma Nico\\Desktop\\appunti\\ProjectWork\\project_work_stazione\\StazioneFerroviaria\\StazioneFerroviaria\\Program.cs",
               "RelativeToolTip": "StazioneFerroviaria\\Program.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -137,9 +136,9 @@
               "$type": "Document",
               "DocumentIndex": 7,
               "Title": "NavMenu.razor",
-              "DocumentMoniker": "C:\\Users\\Ciarma Nico\\Desktop\\own stuff\\StazioneFerroviaria\\StazioneFerroviaria\\Components\\Layout\\NavMenu.razor",
+              "DocumentMoniker": "C:\\Users\\Ciarma Nico\\Desktop\\appunti\\ProjectWork\\project_work_stazione\\StazioneFerroviaria\\StazioneFerroviaria\\Components\\Layout\\NavMenu.razor",
               "RelativeDocumentMoniker": "StazioneFerroviaria\\Components\\Layout\\NavMenu.razor",
-              "ToolTip": "C:\\Users\\Ciarma Nico\\Desktop\\own stuff\\StazioneFerroviaria\\StazioneFerroviaria\\Components\\Layout\\NavMenu.razor",
+              "ToolTip": "C:\\Users\\Ciarma Nico\\Desktop\\appunti\\ProjectWork\\project_work_stazione\\StazioneFerroviaria\\StazioneFerroviaria\\Components\\Layout\\NavMenu.razor",
               "RelativeToolTip": "StazioneFerroviaria\\Components\\Layout\\NavMenu.razor",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAA1AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
@@ -149,9 +148,9 @@
               "$type": "Document",
               "DocumentIndex": 2,
               "Title": "Dashboard.razor.cs",
-              "DocumentMoniker": "C:\\Users\\Ciarma Nico\\Desktop\\own stuff\\StazioneFerroviaria\\StazioneFerroviaria\\Components\\Pages\\Dashboard.razor.cs",
+              "DocumentMoniker": "C:\\Users\\Ciarma Nico\\Desktop\\appunti\\ProjectWork\\project_work_stazione\\StazioneFerroviaria\\StazioneFerroviaria\\Components\\Pages\\Dashboard.razor.cs",
               "RelativeDocumentMoniker": "StazioneFerroviaria\\Components\\Pages\\Dashboard.razor.cs",
-              "ToolTip": "C:\\Users\\Ciarma Nico\\Desktop\\own stuff\\StazioneFerroviaria\\StazioneFerroviaria\\Components\\Pages\\Dashboard.razor.cs",
+              "ToolTip": "C:\\Users\\Ciarma Nico\\Desktop\\appunti\\ProjectWork\\project_work_stazione\\StazioneFerroviaria\\StazioneFerroviaria\\Components\\Pages\\Dashboard.razor.cs",
               "RelativeToolTip": "StazioneFerroviaria\\Components\\Pages\\Dashboard.razor.cs",
               "ViewState": "AgIAAAwAAAAAAAAAAAAswCoAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -161,9 +160,9 @@
               "$type": "Document",
               "DocumentIndex": 3,
               "Title": "Dashboard.razor",
-              "DocumentMoniker": "C:\\Users\\Ciarma Nico\\Desktop\\own stuff\\StazioneFerroviaria\\StazioneFerroviaria\\Components\\Pages\\Dashboard.razor",
+              "DocumentMoniker": "C:\\Users\\Ciarma Nico\\Desktop\\appunti\\ProjectWork\\project_work_stazione\\StazioneFerroviaria\\StazioneFerroviaria\\Components\\Pages\\Dashboard.razor",
               "RelativeDocumentMoniker": "StazioneFerroviaria\\Components\\Pages\\Dashboard.razor",
-              "ToolTip": "C:\\Users\\Ciarma Nico\\Desktop\\own stuff\\StazioneFerroviaria\\StazioneFerroviaria\\Components\\Pages\\Dashboard.razor",
+              "ToolTip": "C:\\Users\\Ciarma Nico\\Desktop\\appunti\\ProjectWork\\project_work_stazione\\StazioneFerroviaria\\StazioneFerroviaria\\Components\\Pages\\Dashboard.razor",
               "RelativeToolTip": "StazioneFerroviaria\\Components\\Pages\\Dashboard.razor",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAB4AAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
@@ -173,11 +172,11 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\Users\\Ciarma Nico\\Desktop\\own stuff\\StazioneFerroviaria\\StazioneFerroviaria\\appsettings.json",
+              "DocumentMoniker": "C:\\Users\\Ciarma Nico\\Desktop\\appunti\\ProjectWork\\project_work_stazione\\StazioneFerroviaria\\StazioneFerroviaria\\appsettings.json",
               "RelativeDocumentMoniker": "StazioneFerroviaria\\appsettings.json",
-              "ToolTip": "C:\\Users\\Ciarma Nico\\Desktop\\own stuff\\StazioneFerroviaria\\StazioneFerroviaria\\appsettings.json*",
-              "RelativeToolTip": "StazioneFerroviaria\\appsettings.json*",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\Ciarma Nico\\Desktop\\appunti\\ProjectWork\\project_work_stazione\\StazioneFerroviaria\\StazioneFerroviaria\\appsettings.json",
+              "RelativeToolTip": "StazioneFerroviaria\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
               "WhenOpened": "2026-01-05T13:43:58.374Z",
               "EditorCaption": ""
