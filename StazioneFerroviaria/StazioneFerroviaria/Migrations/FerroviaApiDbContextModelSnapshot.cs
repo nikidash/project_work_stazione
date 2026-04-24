@@ -41,7 +41,7 @@ namespace FerroviaApi.Migrations
 
                     b.Property<int>("TrainId")
                         .HasColumnType("integer")
-                        .HasColumnName("train_d");
+                        .HasColumnName("train_id");
 
                     b.HasKey("Id");
 

@@ -8,7 +8,6 @@ namespace FerroviaApi.Models
         [Key]
         public int Id { get; set; }
 
-        [Column("train_d")] // Mappatura esplicita per il campo SQL
         [Required]
         public int TrainId { get; set; }
 

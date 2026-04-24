@@ -135,7 +135,7 @@ namespace FerroviaApi.Migrations
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    train_d = table.Column<int>(type: "integer", nullable: false),
+                    train_id = table.Column<int>(type: "integer", nullable: false),
                     MaintenanceStart = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     MaintenanceEnd = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     MaintenancePlatform = table.Column<int>(type: "integer", nullable: true)
@@ -150,8 +150,8 @@ namespace FerroviaApi.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.SetNull);
                     table.ForeignKey(
-                        name: "FK_Maintenance_TrainsLogs_train_d",
-                        column: x => x.train_d,
+                        name: "FK_Maintenance_TrainsLogs_train_id",
+                        column: x => x.train_id,
                         principalTable: "TrainsLogs",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -163,9 +163,9 @@ namespace FerroviaApi.Migrations
                 column: "MaintenancePlatform");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Maintenance_train_d",
+                name: "IX_Maintenance_train_id",
                 table: "Maintenance",
-                column: "train_d");
+                column: "train_id");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Sectors_PlatformNumber",
