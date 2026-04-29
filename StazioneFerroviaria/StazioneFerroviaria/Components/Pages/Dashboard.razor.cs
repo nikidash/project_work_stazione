@@ -1,15 +1,19 @@
 using FerroviaApi.Models;
+using Microsoft.AspNetCore.Components;
 using Microsoft.EntityFrameworkCore;
 
 namespace StazioneFerroviaria.Components.Pages;
 
-public partial class Dashboard
+public partial class Dashboard : IDisposable
 {
     private List<Sector> sectors = new();
     private List<Train> trains = new();
     private List<Maintenance> maintenance = new();
     private List<FerroviaApi.Models.Semaphore> semaphores = new();
     private List<Switch> switches = new();
+
+    private System.Threading.Timer? _layoutTimer;
+    private bool _disposed;
 
     protected override async Task OnInitializedAsync()
     {
@@ -30,6 +34,19 @@ public partial class Dashboard
         maintenance = await Db.Maintenance.Include(m => m.TrainLog).ToListAsync();
         semaphores = await Db.Semaphores.ToListAsync();
         switches = await Db.Switches.ToListAsync();
+
+        _layoutTimer = new System.Threading.Timer(_ =>
+        {
+            if (_disposed) return;
+            _ = InvokeAsync(StateHasChanged);
+        }, null, 1000, 1000);
+    }
+
+    public void Dispose()
+    {
+        _disposed = true;
+        _layoutTimer?.Dispose();
+        _layoutTimer = null;
     }
 
     private string GetTrackClass(Sector s)
