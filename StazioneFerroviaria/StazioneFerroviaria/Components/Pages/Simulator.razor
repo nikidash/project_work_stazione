@@ -1,0 +1,131 @@
+@page "/simulator"
+@inject StazioneFerroviaria.Services.SimulationService SimService
+
+<h3>Simulatore Stazione</h3>
+
+<div class="card mb-3">
+    <div class="card-body">
+        <div class="d-flex flex-wrap align-items-center gap-2 mb-2">
+            <button class="btn btn-success" @onclick="Play" disabled="@_isRunning">
+                ▶ Play
+            </button>
+            <button class="btn btn-warning" @onclick="Pause" disabled="@(!_isRunning)">
+                ⏸ Pausa
+            </button>
+            <button class="btn btn-primary" @onclick="Step">
+                ⏭ Step
+            </button>
+            <button class="btn btn-danger" @onclick="DoReset">
+                ↺ Reset
+            </button>
+            <div class="ms-auto d-flex align-items-center gap-2">
+                <label class="form-label mb-0 text-nowrap">Velocità (@(_speed) ms/tick)</label>
+                <input type="range" class="form-range" style="width:180px;"
+                       min="200" max="5000" step="100"
+                       value="@_speed" @onchange="OnSpeedChanged" />
+            </div>
+        </div>
+
+        <div class="d-flex flex-wrap gap-2">
+            <span class="badge bg-info text-dark">Tick: @SimService.TickCount</span>
+            <span class="badge @(_isRunning ? "bg-success" : "bg-secondary")">
+                @(_isRunning ? "In esecuzione" : "In pausa")
+            </span>
+            @{
+                var queue = SimService.GetWaitingQueue();
+            }
+            @if (queue.Count > 0)
+            {
+                <span class="badge bg-warning text-dark">
+                    In attesa: @queue.Count
+                </span>
+            }
+        </div>
+    </div>
+</div>
+
+@* ── Coda d'attesa ──────────────────────────────────────────────────────── *@
+@{
+    var waitingQueue = SimService.GetWaitingQueue();
+}
+@if (waitingQueue.Count > 0)
+{
+    <div class="card mb-3 border-warning">
+        <div class="card-header bg-warning text-dark fw-bold">
+            Coda d'attesa (@waitingQueue.Count treni)
+        </div>
+        <div class="card-body p-0">
+            <table class="table table-sm table-hover mb-0">
+                <thead class="table-light">
+                    <tr>
+                        <th>Treno</th>
+                        <th>Tipo</th>
+                        <th>Priorità</th>
+                        <th>In coda da</th>
+                        <th>Ritardo (min)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var (train, queuedAt) in waitingQueue
+                        .OrderByDescending(w => StazioneFerroviaria.Services.SimulationService.GetTrainPriority(w.Train.TrainType))
+                        .ThenByDescending(w => (DateTime.UtcNow - w.Train.ScheduledArrivalTime).TotalMinutes))
+                    {
+                        var delay = (DateTime.UtcNow - train.ScheduledArrivalTime).TotalMinutes;
+                        <tr>
+                            <td><code>@train.TrainType@train.TrainNumber</code></td>
+                            <td>@GetTypeName(train.TrainType)</td>
+                            <td>
+                                <span class="badge @GetPriorityClass(train.TrainType)">
+                                    P@StazioneFerroviaria.Services.SimulationService.GetTrainPriority(train.TrainType)
+                                </span>
+                            </td>
+                            <td>@queuedAt.ToLocalTime().ToString("HH:mm:ss")</td>
+                            <td>
+                                @if (delay > 0)
+                                {
+                                    <span class="text-danger fw-bold">+@((int)delay) min</span>
+                                }
+                                else
+                                {
+                                    <span class="text-muted">—</span>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}
+
+<h4 class="mt-2">Layout stazione</h4>
+@{
+    var allWaiting = SimService.GetWaitingQueue();
+    var waitLeft  = allWaiting.Count(w => w.Train.Origin.StartsWith("L"));
+    var waitRight = allWaiting.Count(w => !w.Train.Origin.StartsWith("L"));
+}
+<StationLayout SimService="SimService"
+               WaitingLeft="@waitLeft"
+               WaitingRight="@waitRight" />
+
+@code {
+    private static string GetTypeName(string t) => t switch
+    {
+        "R" => "Regionale",
+        "V" => "Veloce",
+        "F" => "Freccia",
+        "T" => "Merci transito",
+        "S" => "Cargo stazionante",
+        _   => "—"
+    };
+
+    private static string GetPriorityClass(string t) => t switch
+    {
+        "T" => "bg-danger",
+        "F" => "bg-primary",
+        "V" => "bg-info text-dark",
+        "R" => "bg-secondary",
+        "S" => "bg-light text-dark border",
+        _   => "bg-dark"
+    };
+}

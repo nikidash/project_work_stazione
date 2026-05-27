@@ -1,0 +1,172 @@
+@using System.Globalization
+@using StazioneFerroviaria.Models.Simulation
+@using StazioneFerroviaria.Services
+
+<div class="station-layout-wrap">
+    <svg viewBox="0 0 1000 600" class="w-100" preserveAspectRatio="xMidYMid meet"
+         style="max-height:600px; background:#f8f9fa; border:1px solid #dee2e6; border-radius:6px;">
+
+        <defs>
+            <pattern id="smallGrid" width="20" height="20" patternUnits="userSpaceOnUse">
+                <circle cx="10" cy="10" r="1" fill="#ddd" />
+            </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#smallGrid)" />
+
+        @if (SimService?.Layout != null)
+        {
+            var offset = 10;
+            var layout = SimService.Layout;
+
+            <!-- Static Layout (Segments) -->
+            @foreach (var segment in layout.Segments)
+            {
+                var startNode = layout.Nodes.FirstOrDefault(n => n.Id == segment.StartNodeId);
+                var endNode = layout.Nodes.FirstOrDefault(n => n.Id == segment.EndNodeId);
+                if (startNode != null && endNode != null)
+                {
+                    var cssClass = segment.IsPlatform ? "stroke: #28a745; stroke-width: 8;" : 
+                                   segment.IsStorage ? "stroke: #0dcaf0; stroke-width: 6;" : 
+                                   "stroke: #6c757d; stroke-width: 4;";
+                    <line x1="@(startNode.X * 20 + offset)" 
+                          y1="@(startNode.Y * 20 + offset)" 
+                          x2="@(endNode.X * 20 + offset)" 
+                          y2="@(endNode.Y * 20 + offset)" 
+                          style="@cssClass stroke-linecap: round;" />
+                }
+            }
+
+            <!-- Static Layout (Nodes) -->
+            @foreach (var node in layout.Nodes)
+            {
+                int px = node.X * 20 + offset;
+                int py = node.Y * 20 + offset;
+                
+                if (node.IsSwitch)
+                {
+                    <circle cx="@px" cy="@py" r="6" fill="#ffc107" stroke="#333" stroke-width="2" />
+                }
+                else if (node.IsCrossing)
+                {
+                    <circle cx="@px" cy="@py" r="6" fill="#dc3545" stroke="#333" stroke-width="2" />
+                }
+                else
+                {
+                    <circle cx="@px" cy="@py" r="3" fill="#333" />
+                }
+            }
+
+            <!-- Dynamic Layout (Trains) -->
+            @foreach (var route in SimService.ActiveRoutes)
+            {
+                var train = route.Train;
+                var fill = TrainFill(train);
+
+                @foreach (var zone in route.PathZones)
+                {
+                    if (zone.IsOccupied && zone.Train?.Id == train.Id)
+                    {
+                        var segment = layout.Segments.FirstOrDefault(s => s.Id == zone.SegmentId);
+                        if (segment != null)
+                        {
+                            var sNode = layout.Nodes.FirstOrDefault(n => n.Id == segment.StartNodeId);
+                            var eNode = layout.Nodes.FirstOrDefault(n => n.Id == segment.EndNodeId);
+                            if (sNode != null && eNode != null)
+                            {
+                                double x1 = sNode.X * 20 + offset;
+                                double y1 = sNode.Y * 20 + offset;
+                                double x2 = eNode.X * 20 + offset;
+                                double y2 = eNode.Y * 20 + offset;
+
+                                double dx = x2 - x1;
+                                double dy = y2 - y1;
+                                double len = Math.Sqrt(dx * dx + dy * dy);
+                                
+                                if (len > 0)
+                                {
+                                    double nx = dx / len;
+                                    double ny = dy / len;
+                                    double gap = 6; // Leave a gap at each end to separate cars visually
+                                    
+                                    x1 += nx * gap;
+                                    y1 += ny * gap;
+                                    x2 -= nx * gap;
+                                    y2 -= ny * gap;
+                                }
+
+                                <line x1="@x1.ToString(CultureInfo.InvariantCulture)" 
+                                      y1="@y1.ToString(CultureInfo.InvariantCulture)" 
+                                      x2="@x2.ToString(CultureInfo.InvariantCulture)" 
+                                      y2="@y2.ToString(CultureInfo.InvariantCulture)"
+                                      style="stroke: @fill; stroke-width: 12; stroke-linecap: round;"
+                                      opacity="@(train.IsExiting ? "0.55" : "1")">
+                                    <title>Treno @train.Code (@train.Type) · @TrainStatus(train)</title>
+                                </line>
+                                
+                                <svg:text x="@(((sNode.X * 20 + offset) + (eNode.X * 20 + offset)) / 2)" 
+                                          y="@(((sNode.Y * 20 + offset) + (eNode.Y * 20 + offset)) / 2 + 3)" font-size="8"
+                                      fill="white" text-anchor="middle" font-weight="bold"
+                                      style="pointer-events:none; text-shadow: 0 0 2px rgba(0,0,0,0.8)">
+                                    @train.Code
+                                </svg:text>
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
+        <!-- Indicatori coda in ingresso -->
+        @if (WaitingLeft > 0)
+        {
+            <g>
+                <rect x="10" y="10" width="30" height="15" fill="#ffc107" rx="2" opacity="0.9"/>
+                <svg:text x="25" y="21" font-size="10" fill="#1a1a1a" text-anchor="middle" font-weight="bold">
+                    +@WaitingLeft
+                </svg:text>
+            </g>
+        }
+        @if (WaitingRight > 0)
+        {
+            <g>
+                <rect x="960" y="10" width="30" height="15" fill="#ffc107" rx="2" opacity="0.9"/>
+                <svg:text x="975" y="21" font-size="10" fill="#1a1a1a" text-anchor="middle" font-weight="bold">
+                    +@WaitingRight
+                </svg:text>
+            </g>
+        }
+    </svg>
+</div>
+
+@code {
+    [Parameter, EditorRequired]
+    public SimulationService SimService { get; set; } = null!;
+
+    [Parameter] public int WaitingLeft { get; set; }
+    [Parameter] public int WaitingRight { get; set; }
+
+    private static string TrainStatus(SimTrain t)
+    {
+        if (t.IsExiting)
+            return $"In uscita — {t.VisibleZoneCount} zone rimaste";
+
+        if (t.IsStopping)
+            return $"In sosta — {t.TimeRemaining} tick rimasti";
+
+        if (!t.HasStoppedAtPlatform && t.VisibleZoneCount < t.ZoneCount)
+            return $"In ingresso — {t.VisibleZoneCount}/{t.ZoneCount} zone visibili";
+
+        return "In transito";
+    }
+
+    private static string TrainFill(SimTrain t) =>
+        (t.IsStopping, t.Type) switch
+        {
+            (true,  "R" or "V" or "F") => "#0a58ca",   // blu scuro
+            (true,  "T" or "S")        => "#a02533",   // rosso scuro
+            (true,  _)                 => "#1f2326",
+            (false, "R" or "V" or "F") => "#0d6efd",   // blu vivace
+            (false, "T" or "S")        => "#dc3545",   // rosso vivace
+            _                          => "#343a40",
+        };
+}

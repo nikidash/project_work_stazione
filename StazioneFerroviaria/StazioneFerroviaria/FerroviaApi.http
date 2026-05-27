@@ -1,0 +1,6 @@
+@FerroviaApi_HostAddress = http://localhost:5160
+
+GET {{FerroviaApi_HostAddress}}/
+Accept: application/json
+
+###

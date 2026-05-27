@@ -1,0 +1,81 @@
+@page "/add-train"
+
+<h3>Aggiungi Treno</h3>
+
+@if (!string.IsNullOrEmpty(successMessage))
+{
+    <div class="alert alert-success">@successMessage</div>
+}
+
+@if (!string.IsNullOrEmpty(errorMessage))
+{
+    <div class="alert alert-danger">@errorMessage</div>
+}
+
+<EditForm Model="train" OnValidSubmit="SaveTrain">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="mb-3">
+        <label>Numero Treno</label>
+        <InputText class="form-control" @bind-Value="train.TrainNumber" />
+    </div>
+
+    <div class="mb-3">
+        <label>Tipo Treno</label>
+        <InputSelect class="form-control" @bind-Value="train.TrainType" @bind-Value:after="OnTrainTypeChanged">
+            <option value="R">Regionale (passeggeri, priorità P2)</option>
+            <option value="V">Veloce (passeggeri, priorità P3)</option>
+            <option value="F">Freccia (passeggeri, priorità P4)</option>
+            <option value="T">Merci Transito (priorità P5, in transito)</option>
+            <option value="S">Cargo Stazionante (priorità P1, binario morto)</option>
+        </InputSelect>
+    </div>
+
+    <div class="mb-3">
+        <label>Lunghezza</label>
+        <InputNumber class="form-control" @bind-Value="train.Length" />
+    </div>
+
+    <div class="mb-3">
+        <label>Origine</label>
+        <InputSelect class="form-control" @bind-Value="train.Origin">
+            <option value="L1">L1</option>
+            <option value="R1">R1</option>
+            <option value="L2">L2</option>
+            <option value="R2">R2</option>
+        </InputSelect>
+    </div>
+
+    <div class="mb-3">
+        <label>Destinazione</label>
+        <InputSelect class="form-control" @bind-Value="train.Destination">
+            <option value="L">L</option>
+            <option value="R">R</option>
+        </InputSelect>
+    </div>
+
+    <div class="mb-3">
+        <label>Arrivo programmato (UTC)</label>
+        <InputDate Type="InputDateType.DateTimeLocal" class="form-control"
+                   @bind-Value="train.ScheduledArrivalTime" />
+    </div>
+
+    <div class="mb-3">
+        <label>Partenza programmata (UTC)</label>
+        <InputDate Type="InputDateType.DateTimeLocal" class="form-control"
+                   @bind-Value="train.ScheduledDepartureTime" />
+    </div>
+
+    <div class="form-check mb-3">
+        <InputCheckbox class="form-check-input" @bind-Value="train.IsTransit" />
+        <label class="form-check-label">In transito (non si ferma)</label>
+    </div>
+
+    <div class="form-check mb-3">
+        <InputCheckbox class="form-check-input" @bind-Value="isMaintenance" />
+        <label class="form-check-label">In manutenzione</label>
+    </div>
+
+    <button class="btn btn-primary" type="submit">Salva</button>
+</EditForm>
